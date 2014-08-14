@@ -41,6 +41,10 @@
 			'normalScrollElementTouchThreshold': 5,
 			'sectionSelector': '.section',
 			'slideSelector': '.slide',
+			
+			//BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
+			//Apple devices (laptops, mouses...)
+			'scrolldelay': 600,
 
 			//events
 			'afterLoad': null,
@@ -57,11 +61,6 @@
 		    options.continuousVertical = false;
 		    console && console.log && console.log("Option loopTop/loopBottom is mutually exclusive with continuousVertical; continuousVertical disabled");
 		}
-
-		//Defines the delay to take place before being able to scroll to the next section
-		//BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
-		//Apple devices (laptops, mouses...)
-		var scrollDelay = 600;
 
 		$.fn.fullpage.setAutoScrolling = function(value){
 			options.autoScrolling = value;
@@ -786,7 +785,7 @@
 					setTimeout(function () {
 						isMoving = false;
 						$.isFunction(callback) && callback.call(this);
-					}, scrollDelay);
+					}, options.scrolldelay);
 				}, options.scrollingSpeed);
 			} else { // ... use jQuery animate
 
@@ -805,7 +804,7 @@
 					setTimeout(function () {
 						isMoving = false;
 						$.isFunction(callback) && callback.call(this);
-					}, scrollDelay);
+					}, options.scrolldelay);
 				});
 			}
 
